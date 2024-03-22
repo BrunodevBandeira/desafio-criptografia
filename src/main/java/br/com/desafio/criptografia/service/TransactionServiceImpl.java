@@ -32,7 +32,7 @@ public class TransactionServiceImpl implements TransactionService{
 
     @Override
     public List<TransactionResponseDTO> findAll() {
-        return transactionMapper.toTransactionDTO(transactionRepository.findAll());
+        return transactionMapper.toDTO(transactionRepository.findAll());
     }
 
     @Override

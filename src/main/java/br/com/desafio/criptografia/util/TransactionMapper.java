@@ -1,5 +1,8 @@
 package br.com.desafio.criptografia.util;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.stereotype.Component;
 
 import br.com.desafio.criptografia.dto.request.TransactionRequestDTO;
@@ -22,6 +25,11 @@ public class TransactionMapper {
     public TransactionResponseDTO toTransactionDTO(Transaction transaction) {
         // toTransactionDTO: Converte um objeto Transaction em um objeto TransactionRequestDTO.
         return new TransactionResponseDTO(transaction);
+    }
+
+        public List<TransactionResponseDTO> toDTO(List<Transaction> transactionList) {
+        // toPeopleDTO: Converte uma lista de objetos Person em uma lista de PersonResponseDTO.
+        return transactionList.stream().map(TransactionResponseDTO::new).collect(Collectors.toList());
     }
 
     public void updateTransactionData(Transaction transaction, TransactionRequestDTO transactionRequestDTO) {

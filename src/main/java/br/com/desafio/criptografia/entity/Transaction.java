@@ -19,7 +19,7 @@ public class Transaction implements Serializable{
    // unique = true: Indica se os valores na coluna devem ser únicos em toda a tabela.
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false, unique = true)
     private Long id;
 

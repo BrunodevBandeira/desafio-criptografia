@@ -9,4 +9,5 @@ public class TransactionRequestDTO {
     private String userDocument;
     private String creditCardToken;
     private Long value;
+    
 }
