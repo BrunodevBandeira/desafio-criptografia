@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,13 +14,16 @@ import org.springframework.web.util.UriComponentsBuilder;
 import br.com.desafio.criptografia.dto.request.TransactionRequestDTO;
 import br.com.desafio.criptografia.dto.response.TransactionResponseDTO;
 import br.com.desafio.criptografia.service.TransactionService;
+import br.com.desafio.criptografia.service.exceptions.TransactionNotFound;
 import jakarta.persistence.EntityNotFoundException;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 @RestController
@@ -48,7 +52,7 @@ public class TransactionController {
 
         return ResponseEntity.ok(transaction);
 
-        // return ResponseEntity.ok(transactionService.findById(id));
+
     }
 
     @GetMapping
@@ -70,6 +74,35 @@ public class TransactionController {
         return ResponseEntity.created(uri).body(transResponseDTO);
 
     }
+
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<TransactionResponseDTO> updateTransaction(@PathVariable(name = "id") Long id, @RequestBody TransactionRequestDTO transactionRequestDTO) {
+        try {
+            TransactionResponseDTO updatedTransaction = transactionService.updateTransaction(id, transactionRequestDTO);
+            return ResponseEntity.ok().body(updatedTransaction);
+
+        } catch (TransactionNotFound e) {
+            return ResponseEntity.notFound().build();
+
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<String> delete(@PathVariable(value = "id") Long id) {
+        try {
+            transactionService.delete(id);
+            return ResponseEntity.ok().body("Transação excluída com sucesso");
+
+        } catch (TransactionNotFound e) {
+            return ResponseEntity.notFound().build();
+
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
     
     
 }

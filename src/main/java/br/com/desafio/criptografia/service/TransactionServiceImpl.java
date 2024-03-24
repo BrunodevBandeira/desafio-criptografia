@@ -16,7 +16,7 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
  
-public class TransactionServiceImpl implements TransactionService{
+public class TransactionServiceImpl implements TransactionService {
 
     @Autowired
     private final TransactionRepository transactionRepository;
@@ -24,7 +24,7 @@ public class TransactionServiceImpl implements TransactionService{
     @Autowired
     private final TransactionMapper transactionMapper;
  
-     
+    
     @Override
     public TransactionResponseDTO findById(Long id) {
         return transactionMapper.toTransactionDTO(returnTransaction(id));
@@ -37,20 +37,21 @@ public class TransactionServiceImpl implements TransactionService{
 
     @Override
     public TransactionResponseDTO registerNewTransaction(TransactionRequestDTO transactionRequestDTO) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'registerNewTransaction'");
+        Transaction transaction = transactionMapper.toTransaction(transactionRequestDTO);
+        return transactionMapper.toTransactionDTO(transactionRepository.save(transaction));
     }
 
     @Override
     public TransactionResponseDTO updateTransaction(Long id, TransactionRequestDTO transactionRequestDTO) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'updateTransaction'");
+        Transaction transaction = returnTransaction(id);
+        transactionMapper.updateTransactionData(transaction, transactionRequestDTO);
+        return transactionMapper.toTransactionDTO(transactionRepository.save(transaction));
     }
 
     @Override
     public String delete(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'delete'");
+        transactionRepository.deleteById(id);
+        return "Transação deletada, ID => " + id;
     }
 
     private Transaction returnTransaction(Long id) {

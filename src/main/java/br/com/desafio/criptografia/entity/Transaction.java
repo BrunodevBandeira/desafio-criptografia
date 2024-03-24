@@ -14,8 +14,8 @@ import lombok.Data;
 @Entity
 @Table(name = "tb_transaction")
 @Data
-public class Transaction implements Serializable{
-   // nullable = false:  a coluna não pode ter valores nulos, ou seja, todos os registros devem ter um valor válido para essa coluna.
+public class Transaction implements Serializable {
+   // nullable = false: a coluna não pode ter valores nulos, ou seja, todos os registros devem ter um valor válido para essa coluna.
    // unique = true: Indica se os valores na coluna devem ser únicos em toda a tabela.
 
     @Id
@@ -31,6 +31,10 @@ public class Transaction implements Serializable{
 
     @Column(name = "value", nullable = false)
     private Long value;
+
+    public Transaction() {
+
+    }
 
 
 

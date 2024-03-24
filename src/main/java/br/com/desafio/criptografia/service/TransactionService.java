@@ -11,6 +11,6 @@ public interface TransactionService {
     List<TransactionResponseDTO> findAll();
     TransactionResponseDTO registerNewTransaction(TransactionRequestDTO transactionRequestDTO);
     TransactionResponseDTO updateTransaction(Long id, TransactionRequestDTO transactionRequestDTO);
-    String delete(Long id);
+    String delete(Long id);  
     
 }
