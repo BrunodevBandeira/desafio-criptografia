@@ -27,27 +27,25 @@ public class Transaction implements Serializable {
     private String userDocument;
 
     @Column(name = "creditCardToken", nullable = false)
-    private String creditCardToken;
+    private String creditCardToken; 
 
-    @Column(name = "value", nullable = false)
-    private Long value;
+    @Column(name = "valor", nullable = false)
+    private Long valor;
 
     public Transaction() {
 
     }
-
-
 
     /*
      * O "builder pattern" é um padrão de design que é útil quando você tem muitos parâmetros opcionais em um construtor e deseja tornar a criação de objetos mais legível e fácil de usar. Ele permite que você crie objetos passo a passo, definindo apenas os valores que deseja, sem se preocupar com a ordem dos parâmetros ou com valores padrão.
     */
 
     @Builder
-    public Transaction(Long id, String userDocument, String creditCardToken, Long value) {
+    public Transaction(Long id, String userDocument, String creditCardToken, Long valor) {
         this.id = id;
         this.userDocument = userDocument;
         this.creditCardToken = creditCardToken;
-        this.value = value;
+        this.valor = valor;
     }
     
 }

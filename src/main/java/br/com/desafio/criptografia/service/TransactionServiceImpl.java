@@ -10,12 +10,12 @@ import br.com.desafio.criptografia.dto.request.TransactionRequestDTO;
 import br.com.desafio.criptografia.dto.response.TransactionResponseDTO;
 import br.com.desafio.criptografia.entity.Transaction;
 import br.com.desafio.criptografia.repository.TransactionRepository;
+import br.com.desafio.criptografia.service.SecurityComponent.SecurityComponent;
 import br.com.desafio.criptografia.util.TransactionMapper;
 import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
- 
 public class TransactionServiceImpl implements TransactionService {
 
     @Autowired
@@ -23,7 +23,6 @@ public class TransactionServiceImpl implements TransactionService {
 
     @Autowired
     private final TransactionMapper transactionMapper;
- 
     
     @Override
     public TransactionResponseDTO findById(Long id) {
