@@ -15,12 +15,12 @@ Este projeto foi feito como desafio do repositorio  [backend-br](https://github.
 - Spring security
 - H2
 
- ## Sobre o desafio
+ ## Sobre o desafio <img align="center" alt="html" height="50px" src="https://cultofthepartyparrot.com/parrots/hd/hackerparrot.gif" />
 
  Implementação de criptografia transparente para campos sensíveis em entidades, onde os campos são entregues descriptografados nas requisições das APIs e persistidos criptografados no banco de dados.
 
 
-## Sobre o projeto.
+## Sobre o projeto. <img align="center" alt="html" height="50px" src="https://cultofthepartyparrot.com/parrots/hd/spyparrot.gif" />
 
 Neste desafio foi criado uma CRUD(Create, Read, Update e Delete) simples no Spring-boot seguindo o Padrão MVC (Model View Controller), foi utilizado o banco de dados H2 e para criptografia foi utilizado na aplicação o algoritmo AES existente na biblioteca do spring-security.
  
